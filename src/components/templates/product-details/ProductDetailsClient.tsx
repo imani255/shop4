@@ -13,7 +13,8 @@ import {
   Trash2,
   Settings,
   PlusCircle,
-  Loader2
+  Loader2,
+  Share2
 } from 'lucide-react';
 import { generateHtml } from '@/lib/server-html';
 import { RatingStars } from '@/components/ui/rating-stars';
@@ -45,6 +46,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { fbEvent } from '@/lib/fpixel';
+import ShareDialog from '@/components/storefront/ShareDialog';
 
 const CURRENCY_SYMBOL = '৳';
 
@@ -71,6 +73,7 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
   const [eligibility, setEligibility] = useState<any>(null);
   const [activeTab, setActiveTab] = useState('description');
   const [shouldScrollToReviewForm, setShouldScrollToReviewForm] = useState(false);
+  const [isShareOpen, setIsShareOpen] = useState(false);
 
   // Derive available options from variants
   const uniqueColors = useMemo(() =>
@@ -532,6 +535,15 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
                 </button>
               </>
             )}
+            <Separator orientation="vertical" className="h-4" />
+            <button
+              onClick={() => setIsShareOpen(true)}
+              className="flex items-center gap-1 text-sm font-bold text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+              aria-label="Share product"
+            >
+              <Share2 className="h-4 w-4" />
+              <span>Share</span>
+            </button>
           </div>
         </div>
 
@@ -812,6 +824,7 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
           </DialogFooter>
         </DialogContent>
       </Dialog>
+      <ShareDialog isOpen={isShareOpen} onOpenChange={setIsShareOpen} title={product.name} />
     </div>
   );
 }

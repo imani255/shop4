@@ -744,6 +744,24 @@ export default function SuperConfigPage() {
            </CardContent>
         </Card>
 
+        {/* Super Admin Note */}
+        <Card className="lg:col-span-3 border-2 border-red-500/20 shadow-none overflow-hidden rounded-3xl">
+           <CardHeader className="bg-red-500/5 border-b">
+              <CardTitle className="flex items-center gap-2 text-red-600">
+                 <Database className="h-5 w-5" /> Super Admin Note
+              </CardTitle>
+              <CardDescription>Secret credentials and system notes (visible only to Super Admins, stored in plaintext).</CardDescription>
+           </CardHeader>
+           <CardContent className="p-6">
+              <textarea 
+                value={settings?.superAdminNote || ''}
+                onChange={(e) => setSettings({...settings, superAdminNote: e.target.value})}
+                className="w-full h-32 rounded-xl border p-4 text-sm font-mono bg-neutral-50 dark:bg-neutral-900/50 resize-none outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+                placeholder="Enter credentials or system notes..."
+              />
+           </CardContent>
+        </Card>
+
       </div>
     </div>
   );

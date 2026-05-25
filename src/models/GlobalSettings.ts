@@ -100,6 +100,7 @@ export interface IGlobalSettings extends Document {
     image: string;
     rating: number;
   }[];
+  superAdminNote?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -155,6 +156,7 @@ const GlobalSettingsSchema: Schema<IGlobalSettings> = new Schema(
         rating: { type: Number, default: 5 },
       }
     ],
+    superAdminNote: { type: String },
   },
   {
     timestamps: true,
